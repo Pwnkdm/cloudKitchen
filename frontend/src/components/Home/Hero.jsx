@@ -4,8 +4,21 @@ import { motion } from 'framer-motion';
 const Hero = () => {
   const textVariants = {
     hidden: { opacity: 0, y: -50 },
-    visible: { opacity: 1, y: 0 }
+    visible: { opacity: 1, y: 0, }
   };
+
+  const typingVariants = {
+    hidden: { opacity: 0 },
+    visible: (i) => ({
+      opacity: 1,
+      transition: {
+        delay: i * 0.05,
+      }
+    }),
+  };
+
+  const sentence = "You can get the best homemade food from your neighbourhood homes. The food will be full of soul, health and taste.";
+
 
   return (
     <div className='min-h-screen w-full flex flex-col md:flex-row justify-center items-center p-4'>
@@ -47,15 +60,36 @@ const Hero = () => {
         >
           WAITING FOR YOU
         </motion.p>
-        <motion.p
-          className="text-start w-full font-semibold text-base sm:text-lg md:text-xl"
-          initial="hidden"
-          animate="visible"
-          variants={textVariants}
-          transition={{ duration: 0.8, delay: 1.0 }}
+
+           {/* Typing Effect for the Paragraph */}
+        <div className="text-start w-full font-semibold text-base sm:text-lg md:text-xl mt-4">
+          {sentence.split("").map((char, index) => (
+            <motion.span
+              key={index}
+              custom={index}
+              variants={typingVariants}
+              initial="hidden"
+              animate="visible"
+              className={`inline-block ${char === " " ? 'w-1' : ''}`}
+            >
+              {char}
+            </motion.span>
+          ))}
+        </div>
+        <div className='text-center'>
+        <div className='flex justify-center items-center lg:mt-10 md:mt-10 sm:py-2'>
+        <motion.button
+            className='bg-green-600 text-white py-3 px-6 rounded-lg font-bold text-base sm:text-lg md:text-xl lg:text-xl sm:px-4 md:px-10 lg:px-12'
+            initial="hidden"
+            animate="visible"
+            variants={textVariants}
+            whileHover={{ scale: 1.1, backgroundColor: "#38a169", transition: { duration: 0.1 } }}
+            whileTap={{ scale: 0.9, backgroundColor: "#2f855a", transition: { duration: 0.1 } }}
         >
-          You can get the best homemade food from your neighbourhood homes. The food will be full of soul, health and taste.
-        </motion.p>
+            Order Now
+        </motion.button>
+        </div>
+        </div>
       </div>
       <div className='w-full md:w-1/2 lg:w-2/5'>
         <motion.img
