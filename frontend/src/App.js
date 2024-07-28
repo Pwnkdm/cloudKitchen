@@ -1,19 +1,11 @@
-import Hero from "./components/Home/Hero";
-import WorkProcess from "./components/Home/WorkProcess";
-import Counter from "./components/Loader/Counter";
-import Loader from "./components/Loader/Loader";
+import Homepage from "./components/Home/Homepage";
 import Navbar from "./components/Navbar";
 
 function App() {
   return (
     <div>
-      <Navbar/>
-      {/* <div className="flex justify-center mt-[20%]">
-      <Loader/>
-      </div> */}
-      <Hero/>
-      <WorkProcess/>
-      
+     <Navbar/>
+     <Homepage/>      
     </div>
   );
 }
