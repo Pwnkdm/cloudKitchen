@@ -37,81 +37,82 @@ const WorkProcess = () => {
       </div>
 
       <div className='flex flex-col md:flex-row justify-center items-center md:justify-between gap-8 px-4 md:px-20'>
-        <motion.div
-          className='bg-white rounded-lg shadow-lg p-6 flex flex-col items-center w-full md:w-80'
-          initial={{ opacity: 0, y: 50 }}
-          animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
-          transition={{ duration: 0.8, ease: "easeOut" }}
-        >
-          <img src={chooseFood} className='object-contain h-40 w-full mb-4' alt="Choose Food" />
-          <motion.p
-            className='font-semibold text-xl text-center'
-            initial={{ opacity: 0 }}
-            animate={inView ? { opacity: 1 } : { opacity: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-          >
-            Choose Your Meals
-          </motion.p>
-          <motion.p
-            className='font-light text-lg text-center mt-2'
-            initial={{ opacity: 0 }}
-            animate={inView ? { opacity: 1 } : { opacity: 0 }}
-            transition={{ duration: 1, delay: 2 }}
-          >
-            Craft your perfect meal for just Rs.90: Customize your lunch box, your way!
-          </motion.p>
-        </motion.div>
+    <motion.div
+      className='bg-white rounded-lg shadow-lg p-6 flex flex-col items-center w-full md:w-80 h-[345px]'
+      initial={{ opacity: 0, y: 50 }}
+      animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
+      transition={{ duration: 0.8, ease: "easeOut" }}
+    >
+      <img src={chooseFood} className='object-contain h-40 w-full mb-4' alt="Choose Food" />
+      <motion.p
+        className='font-semibold text-xl text-center'
+        initial={{ opacity: 0 }}
+        animate={inView ? { opacity: 1 } : { opacity: 0 }}
+        transition={{ duration: 0.8, delay: 0.2 }}
+      >
+        Choose Your Meals
+      </motion.p>
+      <motion.p
+        className='font-light text-lg text-center mt-2'
+        initial={{ opacity: 0 }}
+        animate={inView ? { opacity: 1 } : { opacity: 0 }}
+        transition={{ duration: 1, delay: 2 }}
+      >
+        Craft your perfect meal for just Rs.90: Customize your lunch box, your way!
+      </motion.p>
+    </motion.div>
 
-        <motion.div
-          className='bg-white rounded-lg shadow-lg p-6 flex flex-col items-center w-full md:w-80'
-          initial={{ opacity: 0, y: 50 }}
-          animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
-          transition={{ duration: 0.8, ease: "easeOut" }}
-        >
-          <img src={fastDelivery} className='object-contain h-40 w-full mb-4' alt="Fast Delivery" />
-          <motion.p
-            className='font-semibold text-xl text-center'
-            initial={{ opacity: 0 }}
-            animate={inView ? { opacity: 1 } : { opacity: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-          >
-            Faster Delivery
-          </motion.p>
-          <motion.p
-            className='font-light text-lg text-center mt-2'
-            initial={{ opacity: 0 }}
-            animate={inView ? { opacity: 1 } : { opacity: 0 }}
-            transition={{ duration: 1, delay: 2 }}
-          >
-            Get your meal delivered quickly and efficiently!
-          </motion.p>
-        </motion.div>
+    <motion.div
+      className='bg-white rounded-lg shadow-lg p-6 flex flex-col items-center w-full md:w-80 h-[345px]'
+      initial={{ opacity: 0, y: 50 }}
+      animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
+      transition={{ duration: 0.8, ease: "easeOut" }}
+    >
+      <img src={fastDelivery} className='object-contain h-40 w-full mb-4' alt="Fast Delivery" />
+      <motion.p
+        className='font-semibold text-xl text-center'
+        initial={{ opacity: 0 }}
+        animate={inView ? { opacity: 1 } : { opacity: 0 }}
+        transition={{ duration: 0.8, delay: 0.2 }}
+      >
+        Faster Delivery
+      </motion.p>
+      <motion.p
+        className='font-light text-lg text-center mt-2'
+        initial={{ opacity: 0 }}
+        animate={inView ? { opacity: 1 } : { opacity: 0 }}
+        transition={{ duration: 1, delay: 2 }}
+      >
+        Get your meal delivered quickly and efficiently!
+      </motion.p>
+    </motion.div>
 
-        <motion.div
-          className='bg-white rounded-lg shadow-lg p-6 flex flex-col items-center w-full md:w-80'
-          initial={{ opacity: 0, y: 50 }}
-          animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
-          transition={{ duration: 0.8, ease: "easeOut" }}
-        >
-          <img src={Noodles} className='object-contain h-40 w-full mb-4' alt="Noodles" />
-          <motion.p
-            className='font-semibold text-xl text-center'
-            initial={{ opacity: 0 }}
-            animate={inView ? { opacity: 1 } : { opacity: 0 }}
-            transition={{ duration: 0.8, delay: 0.5 }}
-          >
-            We Cook & Deliver Faster
-          </motion.p>
-          <motion.p
-            className='font-light text-lg text-center mt-2'
-            initial={{ opacity: 0 }}
-            animate={inView ? { opacity: 1 } : { opacity: 0 }}
-            transition={{ duration: 1, delay: 2 }}
-          >
-            Enjoy delicious meals cooked and delivered swiftly!
-          </motion.p>
-        </motion.div>
-      </div>
+    <motion.div
+      className='bg-white rounded-lg shadow-lg p-6 flex flex-col items-center w-full md:w-80 h-[345px]'
+      initial={{ opacity: 0, y: 50 }}
+      animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
+      transition={{ duration: 0.8, ease: "easeOut" }}
+    >
+      <img src={Noodles} className='object-contain h-40 w-full mb-4' alt="Noodles" />
+      <motion.p
+        className='font-semibold text-xl text-center'
+        initial={{ opacity: 0 }}
+        animate={inView ? { opacity: 1 } : { opacity: 0 }}
+        transition={{ duration: 0.8, delay: 0.5 }}
+      >
+        We Cook & Deliver Faster
+      </motion.p>
+      <motion.p
+        className='font-light text-lg text-center mt-2'
+        initial={{ opacity: 0 }}
+        animate={inView ? { opacity: 1 } : { opacity: 0 }}
+        transition={{ duration: 1, delay: 2 }}
+      >
+        Enjoy delicious meals cooked and delivered swiftly!
+      </motion.p>
+    </motion.div>
+  </div>
+
     </div>
   );
 };

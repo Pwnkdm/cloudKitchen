@@ -50,7 +50,7 @@ const Benefits = () => {
           animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
           transition={{ duration: 0.8, ease: "easeOut" }}
         >
-          <img src={Setting} className='object-contain h-40 w-full mb-4' alt="Choose Food" />
+          <img src={Setting} className='object-contain h-10 w-full mb-4' alt="Choose Food" />
           <motion.p
             className='font-semibold text-xl text-center'
             initial={{ opacity: 0 }}
@@ -75,7 +75,7 @@ const Benefits = () => {
           animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
           transition={{ duration: 0.8, ease: "easeOut" }}
         >
-          <img src={Shield} className='object-contain h-40 w-full mb-4' alt="Fast Delivery" />
+          <img src={Shield} className='object-contain h-10 w-full mb-4' alt="Fast Delivery" />
           <motion.p
             className='font-semibold text-xl text-center'
             initial={{ opacity: 0 }}
@@ -100,7 +100,7 @@ const Benefits = () => {
           animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
           transition={{ duration: 0.8, ease: "easeOut" }}
         >
-          <img src={Order} className='object-contain h-40 w-full mb-4' alt="Noodles" />
+          <img src={Order} className='object-contain h-10 w-full mb-4' alt="Noodles" />
           <motion.p
             className='font-semibold text-xl text-center'
             initial={{ opacity: 0 }}
@@ -125,7 +125,7 @@ const Benefits = () => {
           animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
           transition={{ duration: 0.8, ease: "easeOut" }}
         >
-          <img src={Cooking} className='object-contain h-40 w-full mb-4' alt="Noodles" />
+          <img src={Cooking} className='object-contain h-10 w-full mb-4' alt="Noodles" />
           <motion.p
             className='font-semibold text-xl text-center'
             initial={{ opacity: 0 }}
