@@ -1,7 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import Slider from 'react-slick';
 import useIntersection from '../Hooks/useSections';
-import './styles/Testimonials.css';
 
 const Testimonials = () => {
   const ref = useRef(null);
@@ -77,21 +76,20 @@ const Testimonials = () => {
   };
 
   return (
-    <div ref={ref} className="testimonial-container">
+    <div ref={ref} className="w-full py-4 box-border h-[300px] sm:w-full">
       <Slider {...settings} className="testimonial-slider">
         {testimonials.map((testimonial, index) => (
-          <div
-            key={index}
-            className="testimonial-card"
-          >
-            <img
-              src={testimonial.image}
-              alt={testimonial.name}
-              className="testimonial-image"
-            />
-            <h2 className="testimonial-name">{testimonial.name}</h2>
-            <p className="testimonial-review">{testimonial.review}</p>
-            <span className="testimonial-location">{testimonial.location}</span>
+          <div key={index} className="px-2 box-border">
+            <div className="bg-gray-200 rounded-lg shadow-md flex flex-col items-center p-4 box-border h-full max-w-sm mx-auto">
+              <img
+                src={testimonial.image}
+                alt={testimonial.name}
+                className="w-20 h-20 rounded-full object-cover mb-4"
+              />
+              <h2 className="text-xl font-bold mb-2">{testimonial.name}</h2>
+              <p className="text-sm text-gray-800 text-center mb-2">{testimonial.review}</p>
+              <span className="text-xs text-gray-600">{testimonial.location}</span>
+            </div>
           </div>
         ))}
       </Slider>
