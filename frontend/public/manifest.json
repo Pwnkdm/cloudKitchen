@@ -1,6 +1,6 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "Online Food Delivery App",
+  "name": "mealsonwheels-rho.vercel.app",
   "icons": [
     {
       "src": "logo.png",
