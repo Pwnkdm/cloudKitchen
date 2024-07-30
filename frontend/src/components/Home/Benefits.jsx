@@ -69,7 +69,7 @@ const Benefits = () => {
         </motion.p>
       </div>
 
-      <div className='flex flex-col md:flex-row gap-8 px-4 md:px-20 justify-center'>
+      <div className='flex flex-col  lg:flex-row md:flex-row gap-8 px-4 md:px-20 justify-center'>
         {benefitsData.map((benefit, index) => (
           <BenefitCard
             key={index}

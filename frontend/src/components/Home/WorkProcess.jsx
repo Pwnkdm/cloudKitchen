@@ -38,7 +38,7 @@ const WorkProcess = () => {
 
       <div className='flex flex-col md:flex-row justify-center items-center md:justify-between gap-8 px-4 md:px-20'>
     <motion.div
-      className='bg-white rounded-lg shadow-lg p-6 flex flex-col items-center w-full md:w-80 h-[345px]'
+      className='bg-white rounded-lg shadow-lg p-6 flex flex-col items-center w-full md:w-80 min-h-[350px] flex-grow'
       initial={{ opacity: 0, y: 50 }}
       animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
       transition={{ duration: 0.8, ease: "easeOut" }}
@@ -63,7 +63,7 @@ const WorkProcess = () => {
     </motion.div>
 
     <motion.div
-      className='bg-white rounded-lg shadow-lg p-6 flex flex-col items-center w-full md:w-80 h-[345px]'
+      className='bg-white rounded-lg shadow-lg p-6 flex flex-col items-center w-full md:w-80 min-h-[350px] flex-grow'
       initial={{ opacity: 0, y: 50 }}
       animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
       transition={{ duration: 0.8, ease: "easeOut" }}
@@ -88,7 +88,7 @@ const WorkProcess = () => {
     </motion.div>
 
     <motion.div
-      className='bg-white rounded-lg shadow-lg p-6 flex flex-col items-center w-full md:w-80 h-[345px]'
+      className='bg-white rounded-lg shadow-lg p-6 flex flex-col items-center w-full md:w-80 min-h-[350px] flex-grow'
       initial={{ opacity: 0, y: 50 }}
       animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
       transition={{ duration: 0.8, ease: "easeOut" }}

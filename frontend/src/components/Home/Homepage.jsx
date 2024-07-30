@@ -7,7 +7,7 @@ import Footer from './Footer'
 
 const Homepage = () => {
   return (
-    <div>
+    <div className='w-full'>
         <Hero/>
         <WorkProcess/>
         <Benefits/>

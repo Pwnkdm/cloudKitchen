@@ -22,25 +22,25 @@ const Testimonials = () => {
       name: "Neha",
       review: "From the first bite to the last, my lunch was a symphony of taste and texture; I left feeling completely satisfied.",
       location: "PCMC",
-      image: "https://t3.ftcdn.net/jpg/06/78/09/78/360_F_678097876_9kJnFlRYGAeibsVxspqtCL9UR8giLAvF.jpg",
+      image: "https://live.staticflickr.com/5252/5403292396_0804de9bcf_b.jpg",
     },
     {
       name: "Vikram",
       review: "Effortlessly combining freshness and creativity, the lunch offerings here are simply outstanding.",
       location: "Pune",
-      image: "https://t3.ftcdn.net/jpg/06/78/09/78/360_F_678097876_9kJnFlRYGAeibsVxspqtCL9UR8giLAvF.jpg",
+      image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ_vVBAvcz_VzzBC-8kmKTJ6j3B7t3LbYOhhg&s",
     },
     {
       name: "Anjali",
       review: "The variety of dishes is impressive, and each one is more delicious than the last!",
       location: "Mumbai",
-      image: "https://t3.ftcdn.net/jpg/06/78/09/78/360_F_678097876_9kJnFlRYGAeibsVxspqtCL9UR8giLAvF.jpg",
+      image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQg6NBmp0C2vF7IvnOQO22FO2mMxwmDAl3tow&s",
     },
     {
       name: "Ravi",
       review: "A perfect balance of flavors and healthy options, loved every bite.",
-      location: "Delhi",
-      image: "https://t3.ftcdn.net/jpg/06/78/09/78/360_F_678097876_9kJnFlRYGAeibsVxspqtCL9UR8giLAvF.jpg",
+      location: "Pune",
+      image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRfEJbcU9EwHpp_oZpwQZfFl43u-SwD74TjzA&s",
     },
   ];
 
@@ -76,7 +76,7 @@ const Testimonials = () => {
   };
 
   return (
-    <div ref={ref} className="w-full py-4 box-border h-[300px] sm:w-full">
+    <div ref={ref} className="w-full py-4 box-border h-[300px]">
       <Slider {...settings} className="testimonial-slider">
         {testimonials.map((testimonial, index) => (
           <div key={index} className="px-2 box-border">
