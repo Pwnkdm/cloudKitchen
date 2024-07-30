@@ -1,0 +1,79 @@
+.testimonial-container {
+    width: 100%;
+    padding: 1rem 0;
+    box-sizing: border-box;
+  }
+  
+  .slick-slide {
+    display: flex;
+    justify-content: center;
+    padding: 0 10px;
+    width: 100% !important; /* Make sure the slide takes full width */
+  }
+  
+  .slick-list {
+    margin: 0 -10px;
+    overflow: hidden; /* Hide overflowing content */
+  }
+  
+  .slick-track {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .testimonial-card {
+    background-color: #f4f4f4;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1rem;
+    box-sizing: border-box;
+    height: 100%;
+    max-width: 300px;
+    margin: auto;
+  }
+  
+  /* Center the single card on small screens */
+  @media (max-width: 768px) {
+    .slick-slide {
+      width: 100% !important; /* Ensure each slide takes full width */
+    }
+  
+    .slick-track {
+      justify-content: center !important;
+    }
+  
+    .slick-list {
+      overflow: hidden; /* Prevent horizontal scroll */
+    }
+  }
+  
+  .testimonial-image {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 1rem;
+  }
+  
+  .testimonial-name {
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+  }
+  
+  .testimonial-review {
+    font-size: 0.9rem;
+    color: #333;
+    text-align: center;
+    margin-bottom: 0.5rem;
+  }
+  
+  .testimonial-location {
+    font-size: 0.8rem;
+    color: #666;
+  }
+  

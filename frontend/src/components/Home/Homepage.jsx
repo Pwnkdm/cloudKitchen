@@ -2,7 +2,8 @@ import React from 'react'
 import Hero from './Hero'
 import WorkProcess from './WorkProcess'
 import Benefits from './Benefits'
-import Testomonials from './Testomonials'
+import Testimonials from './Testimonials'
+import Footer from './Footer'
 
 const Homepage = () => {
   return (
@@ -10,7 +11,8 @@ const Homepage = () => {
         <Hero/>
         <WorkProcess/>
         <Benefits/>
-        <Testomonials/>
+        <Testimonials/>
+        <Footer/>
     </div>
   )
 }
