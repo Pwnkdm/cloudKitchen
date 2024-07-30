@@ -2,11 +2,17 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { motion } from 'framer-motion';
 import useIntersection from '../Hooks/useSections';
+import { useNavigate } from 'react-router-dom';
 
 const Hero = () => {
   const ref = useRef(null);
   const [element, setElement] = useState(null);
   const inView = useIntersection({element, rootMargin:'0px'});
+  const navigate = useNavigate();
+
+  const handleOrderClick = () => {
+    navigate('/login');
+  };
 
   useEffect(() => {
     setElement(ref.current);
@@ -93,6 +99,7 @@ const Hero = () => {
               variants={textVariants}
               whileHover={{ scale: 1.1, backgroundColor: "#38a169", transition: { duration: 0.1 } }}
               whileTap={{ scale: 0.9, backgroundColor: "#2f855a", transition: { duration: 0.1 } }}
+              onClick={handleOrderClick}
             >
               Order Now
             </motion.button>
