@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
+import { FaShoppingCart } from 'react-icons/fa'
 
 const Navbar = () => {
   const location = useLocation();
@@ -100,6 +101,17 @@ const Navbar = () => {
                 onClick={() => handleClick('/contact')}
               >
                 Contact
+              </Link>
+            </li>
+            <li>
+              <Link
+                to="/cart"
+                className={`block py-2 px-3 rounded md:bg-transparent md:p-0 ${
+                  activeSection === '/cart' ? 'text-blue-700 dark:text-blue-500' : 'text-gray-900 dark:text-white'
+                }`}
+                onClick={() => handleClick('/cart')}
+              >
+              <span className="hover:text-blue-300" ><FaShoppingCart size={25}/></span>  
               </Link>
             </li>
           </ul>
