@@ -111,7 +111,9 @@ const Navbar = () => {
                 }`}
                 onClick={() => handleClick('/cart')}
               >
-              <span className="hover:text-blue-300" ><FaShoppingCart size={25}/></span>  
+              <span className="hover:text-blue-300" >
+                <FaShoppingCart size={25}/>
+              </span>  
               </Link>
             </li>
           </ul>
