@@ -1,4 +1,4 @@
 # Exclude node_modules directories
-*/node_modules/
+/node_modules/
 # Exclude .env file in the backend folder
-backend/.env
+.env
