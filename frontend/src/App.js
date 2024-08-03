@@ -1,11 +1,12 @@
 import "./styles.css";
 import Homepage from "./components/Home/Homepage";
-import Navbar from "./components/Navbar";
+import Navbar from "./components/Common/Navbar";
 import { motion, useScroll, useSpring } from "framer-motion";
-import { Route, Router, Routes } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 import LoginForm from "./components/Login/LoginForm";
 import CommingSoon from "./components/Common/CommingSoon";
-import Cart from "./components/Cart/Cart";
+import Cart from "./components/Cart/FoodItems";
+import Orders from "./components/Cart/Orders";
 
 function App() {
   const { scrollYProgress } = useScroll();
@@ -27,7 +28,7 @@ function App() {
         <Route path="/services" element={<Cart />} />
         <Route path="/pricing" element={<CommingSoon />} />
         <Route path="/contact" element={<CommingSoon />} />
-        <Route path="/cart" element={<Cart />} />
+        <Route path="/cart" element={<Orders />} />
         {/* Add more routes here */}
       </Routes>
     </div>
