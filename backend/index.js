@@ -13,3 +13,7 @@ connectDB()
   .catch((err) => {
     console.log("MONGODB connection Failed !!", err);
   });
+
+  app.get('/', (req, res) => {
+    res.json({success: true})
+  })
