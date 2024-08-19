@@ -1,5 +1,6 @@
 // actions/cartActions.js
 import { actionTypes } from './action-types';
+import { registerUserMethod } from './api';
 
 // Add to Cart Actions
 const addToCartLoading = () => ({
@@ -109,9 +110,42 @@ const decreaseQuantity = (id) => {
   };
 };
 
+// User related methods 
+const userRegisterLoading = () => ({
+  type: actionTypes.USER_REGISTER_LOADING,
+});
+
+const userRegisterSuccess = () => ({
+  type: actionTypes.USER_REGISTER_SUCCESS,
+  payload: {  },
+});
+
+const userRegisterError = (error) => ({
+  type: actionTypes.USER_REGISTER_ERROR,
+  payload: { error },
+});
+
+const userRegister = (userData) => {
+  return (dispatch) => {
+    dispatch(userRegisterLoading());
+
+    registerUserMethod(userData)
+      .then((response) => {
+        dispatch(userRegisterSuccess(response.data));
+      })
+      .catch((error) => {
+        dispatch(userRegisterError(error.message || "Registration failed"));
+      });
+  };
+};
+
+
+
+
 export const actions = {
   addToCart,
   removeFromCart,
   increaseQuantity,
   decreaseQuantity,
+  userRegister,
 }

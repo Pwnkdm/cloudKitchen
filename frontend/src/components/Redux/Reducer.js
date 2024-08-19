@@ -5,6 +5,9 @@ const initialState = {
   items: {}, // Object with item IDs as keys and quantities as values
   loading: false,
   error: null,
+
+  registerUserLoading:false,
+  registerUserError:false,
 };
 
 const cartReducer = (state = initialState, action) => {
@@ -113,6 +116,25 @@ const cartReducer = (state = initialState, action) => {
         loading: false,
         error: action.payload.error,
       };
+
+      //user login methods
+      case actionTypes.USER_REGISTER_LOADING:
+        return {
+          registerUserLoading:true,
+          registerUserError:false,
+        }
+      
+      case actionTypes.USER_REGISTER_SUCCESS:
+          return {
+            registerUserLoading:false,
+            registerUserError:false,
+        }
+      
+      case actionTypes.USER_REGISTER_ERROR:
+            return {
+              registerUserLoading:false,
+              registerUserError:true,
+        }
 
     default:
       return state;

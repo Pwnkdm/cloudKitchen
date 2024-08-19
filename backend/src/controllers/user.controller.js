@@ -27,10 +27,10 @@ const generateAccessAndRefreshTokens = async (userId) =>{
 
 const registerUser = asyncHandler(async (req, res)=>{
 
-    const {userName, email, password } = req.body;
+    const {userName, email, password, phoneNumber } = req.body;
     // console.log(userName, email, password);
    if(
-    [userName, email, password].some((field)=>field?.trim() === "")
+    [userName, email, password, phoneNumber].some((field)=>field?.trim() === "")
     ){
         throw new ApiError (400, "All fields are required!")
     }
@@ -44,8 +44,8 @@ const registerUser = asyncHandler(async (req, res)=>{
     }
 
 
-    const avtarLocalPath = req.files?.avtar?.[0]?.path;
-    console.log(req.files?.avtar?.[0]?.path);
+    const avtarLocalPath = req.files?.avtar?.[0]?.path;   
+    console.log(req.files,"pppppppppppppppppppppppp");
     
 
     if(!avtarLocalPath){
@@ -62,7 +62,8 @@ const registerUser = asyncHandler(async (req, res)=>{
                         avtar: avtar.url,
                         userName: userName.toLowerCase(),
                         email,
-                        password
+                        password,
+                        phoneNumber
                     });
     const createddUser = await User.findById(user._id).select(
         "-password -refreshToken" //exclude fields 

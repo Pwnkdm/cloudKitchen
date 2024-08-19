@@ -24,6 +24,11 @@ const userSchema = new Schema(
       trim: true,
       required: false,
     },
+    phoneNumber: {
+      type: String,
+      trim: true,
+      required: true,
+    },
     avtar: {
       type: String,
       required: true,

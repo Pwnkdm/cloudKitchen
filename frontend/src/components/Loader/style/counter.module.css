@@ -1,6 +1,6 @@
 .container {
     --uib-size: 45px;
-    --uib-color: black;
+    --uib-color: white;
     --uib-speed: 1.75s;
     --uib-bg-opacity: .1;
     position: relative;

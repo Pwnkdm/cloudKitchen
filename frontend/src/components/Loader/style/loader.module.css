@@ -1,6 +1,6 @@
 .container {
     --uib-size: 45px;
-    --uib-color: black;
+    --uib-color: white;
     --uib-speed: 2.5s;
     display: flex;
     flex-direction: column;
