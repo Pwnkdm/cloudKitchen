@@ -10,6 +10,7 @@ const initialState = {
   registerUserError:false,
 };
 
+
 const cartReducer = (state = initialState, action) => {
   switch (action.type) {
     // Add to Cart Actions
