@@ -11,7 +11,7 @@ const Hero = () => {
   const navigate = useNavigate();
 
   const handleOrderClick = () => {
-    navigate('/login');
+    navigate('/services');
   };
 
   useEffect(() => {

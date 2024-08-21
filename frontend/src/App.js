@@ -7,6 +7,7 @@ import LoginForm from "./components/Login/LoginForm";
 import CommingSoon from "./components/Common/CommingSoon";
 import Cart from "./components/Cart/FoodItems";
 import Orders from "./components/Cart/Orders";
+import PrivateRoute from "./components/Common/PrivateRoute";
 
 function App() {
   const { scrollYProgress } = useScroll();
@@ -24,11 +25,25 @@ function App() {
       <Routes>
         <Route path="/" element={<Homepage />} />
         <Route path="/login" element={<LoginForm />} />
+        <Route
+          path="/services"
+          element={
+            <PrivateRoute>
+              <Cart />
+            </PrivateRoute>
+          }
+        />
+         <Route
+          path="/cart"
+          element={
+            <PrivateRoute>
+              <Orders />
+            </PrivateRoute>
+          }
+        />
         <Route path="/about" element={<CommingSoon />} />
-        <Route path="/services" element={<Cart />} />
         <Route path="/pricing" element={<CommingSoon />} />
         <Route path="/contact" element={<CommingSoon />} />
-        <Route path="/cart" element={<Orders />} />
         {/* Add more routes here */}
       </Routes>
     </div>

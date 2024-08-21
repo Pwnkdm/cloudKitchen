@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 import { actions } from '../Redux/actions';
 
 const Orders = () => {
-  const cart = useSelector((state) => state.items);
+  const cart = useSelector((state) => state.items||[]);
   const dispatch = useDispatch();
 
   const buttonVariants = {

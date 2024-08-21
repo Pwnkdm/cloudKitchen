@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { FaShoppingCart } from 'react-icons/fa'
+import { FaShoppingCart } from 'react-icons/fa';
+import UserAvtar from './UserAvtar';
+import { motion, AnimatePresence } from 'framer-motion';
 
 const Navbar = () => {
   const location = useLocation();
@@ -13,21 +15,39 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="bg-white border-gray-200 dark:bg-gray-900 fixed w-full">
+    <nav className="bg-white border-gray-200 dark:bg-gray-900 fixed w-full z-50">
       <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
-        <Link to="/" className="flex items-center space-x-3 rtl:space-x-reverse" onClick={() => handleClick('/')}>
-          <img src="./logo.png" className="h-8" alt="Logo" />
-          <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">
+        <Link
+          to="/"
+          className="flex items-center space-x-3 rtl:space-x-reverse"
+          onClick={() => handleClick('/')}
+        >
+          <motion.img
+            src="./logo.png"
+            className="h-8"
+            alt="Logo"
+            initial={{ opacity: 0, x: -50 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ type: 'spring', stiffness: 120 }}
+          />
+          <motion.span
+            className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white"
+            initial={{ opacity: 0, x: -50 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ type: 'spring', stiffness: 120, delay: 0.1 }}
+          >
             Cloud Kitchen
-          </span>
+          </motion.span>
         </Link>
-        <button
+        <motion.button
           data-collapse-toggle="navbar-default"
           type="button"
           className="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
           aria-controls="navbar-default"
           aria-expanded={isMenuOpen}
           onClick={() => setIsMenuOpen(!isMenuOpen)}
+          whileHover={{ rotate: 90 }}
+          whileTap={{ scale: 0.9 }}
         >
           <span className="sr-only">Open main menu</span>
           <svg
@@ -45,80 +65,61 @@ const Navbar = () => {
               d="M1 1h15M1 7h15M1 13h15"
             />
           </svg>
-        </button>
-        <div className={`${isMenuOpen ? 'block' : 'hidden'} w-full md:block md:w-auto`} id="navbar-default">
-          <ul className="font-medium flex flex-col p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 rtl:space-x-reverse md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
-            <li>
-              <Link
-                to="/"
-                className={`block py-2 px-3 rounded md:bg-transparent md:p-0 ${
-                  activeSection === '/' ? 'text-blue-700 dark:text-blue-500' : 'text-gray-900 dark:text-white'
-                }`}
-                onClick={() => handleClick('/')}
-              >
-                Home
-              </Link>
-            </li>
-            {/* <li>
-              <Link
-                to="/about"
-                className={`block py-2 px-3 rounded md:bg-transparent md:p-0 ${
-                  activeSection === '/about' ? 'text-blue-700 dark:text-blue-500' : 'text-gray-900 dark:text-white'
-                }`}
-                onClick={() => handleClick('/about')}
-              >
-                About
-              </Link>
-            </li> */}
-            <li>
-              <Link
-                to="/services"
-                className={`block py-2 px-3 rounded md:bg-transparent md:p-0 ${
-                  activeSection === '/services' ? 'text-blue-700 dark:text-blue-500' : 'text-gray-900 dark:text-white'
-                }`}
-                onClick={() => handleClick('/services')}
-              >
-                Services
-              </Link>
-            </li>
-            {/* <li>
-              <Link
-                to="/pricing"
-                className={`block py-2 px-3 rounded md:bg-transparent md:p-0 ${
-                  activeSection === '/pricing' ? 'text-blue-700 dark:text-blue-500' : 'text-gray-900 dark:text-white'
-                }`}
-                onClick={() => handleClick('/pricing')}
-              >
-                Pricing
-              </Link>
-            </li>
-            <li>
-              <Link
-                to="/contact"
-                className={`block py-2 px-3 rounded md:bg-transparent md:p-0 ${
-                  activeSection === '/contact' ? 'text-blue-700 dark:text-blue-500' : 'text-gray-900 dark:text-white'
-                }`}
-                onClick={() => handleClick('/contact')}
-              >
-                Contact
-              </Link>
-            </li> */}
-            <li>
-              <Link
-                to="/cart"
-                className={`block py-2 px-3 rounded md:bg-transparent md:p-0 ${
-                  activeSection === '/cart' ? 'text-blue-700 dark:text-blue-500' : 'text-gray-900 dark:text-white'
-                }`}
-                onClick={() => handleClick('/cart')}
-              >
-              <span className="hover:text-blue-300 flex" >
-                <FaShoppingCart size={25}/>
-                <span className='ml-1'>Cart</span>
-              </span>  
-              </Link>
-            </li>
-          </ul>
-        </div>
+        </motion.button>
+        <AnimatePresence>
+          {(isMenuOpen || !isMenuOpen) && (
+            <motion.div
+              className={`w-full md:block md:w-auto ${isMenuOpen ? 'block' : 'hidden'}`}
+              id="navbar-default"
+              initial={{ height: 0, opacity: 0 }}
+              animate={{ height: 'auto', opacity: 1 }}
+              exit={{ height: 0, opacity: 0 }}
+              transition={{ duration: 0.5 }}
+            >
+              <ul className="font-medium flex flex-col p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 rtl:space-x-reverse md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
+                <li>
+                  <Link
+                    to="/"
+                    className={`block py-2 px-3 rounded md:bg-transparent md:p-0 ${
+                      activeSection === '/' ? 'text-blue-700 dark:text-blue-500' : 'text-gray-900 dark:text-white'
+                    }`}
+                    onClick={() => handleClick('/')}
+                  >
+                    Home
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    to="/services"
+                    className={`block py-2 px-3 rounded md:bg-transparent md:p-0 ${
+                      activeSection === '/services' ? 'text-blue-700 dark:text-blue-500' : 'text-gray-900 dark:text-white'
+                    }`}
+                    onClick={() => handleClick('/services')}
+                  >
+                    Services
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    to="/cart"
+                    className={`block py-2 px-3 rounded md:bg-transparent md:p-0 ${
+                      activeSection === '/cart' ? 'text-blue-700 dark:text-blue-500' : 'text-gray-900 dark:text-white'
+                    }`}
+                    onClick={() => handleClick('/cart')}
+                  >
+                    <motion.span className="hover:text-blue-300 flex" whileHover={{ scale: 1.1 }}>
+                      <FaShoppingCart size={25} />
+                      <span className="ml-1">Cart</span>
+                    </motion.span>
+                  </Link>
+                </li>
+                <li>
+                  <UserAvtar />
+                </li>
+              </ul>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </div>
     </nav>
   );

@@ -3,12 +3,12 @@ import { motion } from 'framer-motion';
 import { useDispatch, useSelector } from 'react-redux';
 import { actions } from '../Redux/actions';
 import Loader from "../Loader/Loader"
+import { loginHandlers } from './State/action';
 
 
 const LoginForm = () => {
   const dispatch = useDispatch();
-  const { registerUserLoading, registerUserError } = useSelector(state=>state);
-  
+  const { userLoading, userError } = useSelector(state=>state.login);  
 
   const [isSignUp, setIsSignUp] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
@@ -20,7 +20,6 @@ const LoginForm = () => {
     password: '',
   });
 
-  console.log(formData,"Form data")
 
   const togglePasswordVisibility = () => {
     setShowPassword((prevState) => !prevState);
@@ -48,15 +47,15 @@ const LoginForm = () => {
     event.preventDefault();
     
     if(isSignUp){
-      dispatch(actions.userRegister(formData))
+      dispatch(loginHandlers.registerUser(formData));
     }else{
-      console.log("write login logic here...");      
+      dispatch(loginHandlers.userLogin(formData));
     }
   }
 
   return (
     <div className="flex min-h-screen flex-1 flex-col justify-center px-6 py-12 bg-gradient-to-r from-gray-800 via-gray-900 to-black">
-      {registerUserLoading ? <div className='flex justify-center align-middle'><Loader /></div> :
+      {userLoading ? <div className='flex justify-center align-middle'><Loader /></div> :
       <>
       <div className="sm:mx-auto sm:w-full sm:max-w-md">
         <motion.img
