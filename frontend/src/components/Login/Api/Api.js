@@ -52,8 +52,6 @@ export const userLoginMethod = (payload) => {
       localStorage.setItem('accessToken', accessToken);
       localStorage.setItem('refreshToken', refreshToken);
 
-      console.log('User logged in successfully:', user);
-
       // Return the user data or relevant response data
       return user;
     })

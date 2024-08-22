@@ -1,18 +1,22 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { motion } from 'framer-motion';
 import profilePlaceholder from "../images/confused.gif";
 import { loginHandlers } from '../Login/State/action';
+import { useNavigate } from 'react-router-dom';
+import { FaUser, FaSignOutAlt } from "react-icons/fa";
 
 const UserAvtar = () => {
-  const { user } = useSelector(state => state.login);
+  const user = JSON.parse(localStorage.getItem('user')) || {};
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const dropdownRef = useRef(null);
 
   const avatarUrl = user?.avtar || profilePlaceholder;
 
   const handleLogout = () => {
-    dispatch(loginHandlers.userLogout(user));
+    dispatch(loginHandlers.userLogout(user, navigate));
     setIsDropdownOpen(false);
   };
 
@@ -20,16 +24,22 @@ const UserAvtar = () => {
     setIsDropdownOpen(prevState => !prevState);
   };
 
+  // Handle clicks outside of the dropdown
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        setIsDropdownOpen(false);
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, []);
+
   return (
-    <div style={{ position: 'relative' }}>
+    <div className="relative">
       <motion.div
-        style={{
-          width: "35px",
-          height: "35px",
-          borderRadius: "50%",
-          overflow: "hidden",
-          cursor: "pointer",
-        }}
+        className="w-9 h-9 rounded-full overflow-hidden cursor-pointer"
         whileHover={{ scale: 1.1, rotate: 5 }}
         whileTap={{ scale: 0.95 }}
         initial={{ scale: 0 }}
@@ -40,70 +50,42 @@ const UserAvtar = () => {
         <img
           src={avatarUrl}
           alt="profile"
-          style={{ height: "100%", width: "100%", objectFit: "cover" }}
+          className="h-full w-full object-cover"
         />
       </motion.div>
 
       {isDropdownOpen && (
         <motion.div
-            initial={{ opacity: 0, y: -10 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -10 }}
-            transition={{ type: "spring", stiffness: 300 }}
-            style={{
-            position: 'absolute',
-            right: 0,
-            marginTop: '10px',
-            backgroundColor: 'white',
-            boxShadow: '0px 4px 12px rgba(0, 0, 0, 0.15)',
-            borderRadius: '12px',
-            overflow: 'hidden',
-            zIndex: 10,
-            width: '200px', // Set a fixed width for better alignment
-            }}
+          ref={dropdownRef} // Attach ref to the dropdown
+          initial={{ opacity: 0, y: -10 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: -10 }}
+          transition={{ type: "spring", stiffness: 300 }}
+          className="absolute right-0 mt-2 bg-white shadow-lg rounded-lg overflow-hidden z-10 w-40 md:w-48"
         >
-            <div style={{
-            display: 'flex',
-            alignItems: 'center',
-            padding: '15px',
-            borderBottom: '1px solid #e0e0e0',
-            backgroundColor: '#f7f7f7', // Light background for the profile section
-            }}>
-            <img 
-                src={avatarUrl} 
-                alt="profile" 
-                style={{
-                width: '40px',
-                height: '40px',
-                borderRadius: '50%',
-                marginRight: '10px',
-                }}
-            />
-            <p style={{
-                margin: 0,
-                fontWeight: '600',
-                color: '#333',
-                textTransform: "capitalize"
-            }}>{user?.userName}</p>
-            </div>
-            <div
-            onClick={handleLogout}
-            style={{
-                padding: '12px 20px',
-                cursor: 'pointer',
-                color: '#d9534f',
-                fontWeight: '500',
-                textAlign: 'center',
-                transition: 'background-color 0.3s ease',
-            }}
-            onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#f8d7da'}
-            onMouseLeave={(e) => e.currentTarget.style.backgroundColor = 'transparent'}
+          <div className="flex flex-col gap-2">
+            <motion.div
+              className="flex items-center justify-between px-4 py-2 cursor-pointer font-medium text-black rounded-lg bg-gray-100 transition-transform duration-300 hover:bg-gray-200"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              onClick={() => navigate("/profile")}
             >
-            Logout
-            </div>
-        </motion.div>
-        )}
+              <FaUser className="mr-2" /> {/* Tailwind spacing */}
+              <span className="text-sm md:text-base">My Profile</span>
+            </motion.div>
 
+            <motion.div
+              className="flex items-center justify-between px-4 py-2 cursor-pointer font-medium text-black rounded-lg bg-gray-100 transition-transform duration-300 hover:bg-gray-200"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              onClick={handleLogout}
+            >
+              <FaSignOutAlt className="mr-2" /> {/* Tailwind spacing */}
+              <span className="text-sm md:text-base">Sign out</span>
+            </motion.div>
+          </div>
+        </motion.div>
+      )}
     </div>
   );
 };

@@ -1,13 +1,15 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { useDispatch, useSelector } from 'react-redux';
-import { actions } from '../Redux/actions';
 import Loader from "../Loader/Loader"
 import { loginHandlers } from './State/action';
+import { useNavigate } from 'react-router-dom';
 
 
 const LoginForm = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+
   const { userLoading, userError } = useSelector(state=>state.login);  
 
   const [isSignUp, setIsSignUp] = useState(false);
@@ -47,9 +49,9 @@ const LoginForm = () => {
     event.preventDefault();
     
     if(isSignUp){
-      dispatch(loginHandlers.registerUser(formData));
+      dispatch(loginHandlers.registerUser(formData,navigate));
     }else{
-      dispatch(loginHandlers.userLogin(formData));
+      dispatch(loginHandlers.userLogin(formData,navigate));
     }
   }
 

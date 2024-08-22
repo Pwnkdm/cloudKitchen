@@ -18,38 +18,38 @@ const Testimonials = () => {
         "Incredible flavors and generous portions; lunch here is not just a meal, it's an experience.",
       location: "Hadapsar, Pune",
       image:
-        "https://github.com/user-attachments/assets/1e9867df-724c-4512-ac4a-438eda288f33",
+        "http://res.cloudinary.com/drfbvnwqd/image/upload/v1724261141/jxx7pklbs2gte0lzqp4p.jpg",
     },
     {
-      name: "Neha",
+      name: "Anirudh Solanke",
       review:
         "From the first bite to the last, my lunch was a symphony of taste and texture; I left feeling completely satisfied.",
-      location: "PCMC",
-      image: "https://live.staticflickr.com/5252/5403292396_0804de9bcf_b.jpg",
+      location: "Kothrud, Pune",
+      image: "http://res.cloudinary.com/drfbvnwqd/image/upload/v1724271403/yxteqen34w8buaxbyuhq.jpg",
     },
     {
-      name: "Vikram",
+      name: "Rushi Gaikwad",
       review:
         "Effortlessly combining freshness and creativity, the lunch offerings here are simply outstanding.",
-      location: "Pune",
+      location: "Sangvi, PCMC",
       image:
-        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ_vVBAvcz_VzzBC-8kmKTJ6j3B7t3LbYOhhg&s",
+        "https://res.cloudinary.com/drfbvnwqd/image/upload/v1724341267/otifrxgof1gxin2c89ft.jpg",
     },
     {
-      name: "Anjali",
+      name: "Akash Deshmukh",
       review:
         "The variety of dishes is impressive, and each one is more delicious than the last!",
-      location: "Mumbai",
+      location: "Alandi, PCMC",
       image:
-        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQg6NBmp0C2vF7IvnOQO22FO2mMxwmDAl3tow&s",
+        "https://res.cloudinary.com/drfbvnwqd/image/upload/v1724341245/bkmxrdv9v4oqnnvk8qlu.jpg",
     },
     {
-      name: "Ravi",
+      name: "Pratik Humbe",
       review:
         "A perfect balance of flavors and healthy options, loved every bite.",
-      location: "Pune",
+      location: "Ghorpadi, Pune",
       image:
-        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRfEJbcU9EwHpp_oZpwQZfFl43u-SwD74TjzA&s",
+        "https://res.cloudinary.com/drfbvnwqd/image/upload/v1724341256/ga4mi5rjoyiqsr67bpsk.jpg",
     },
   ];
 

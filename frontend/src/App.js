@@ -8,6 +8,8 @@ import CommingSoon from "./components/Common/CommingSoon";
 import Cart from "./components/Cart/FoodItems";
 import Orders from "./components/Cart/Orders";
 import PrivateRoute from "./components/Common/PrivateRoute";
+import { Toaster } from 'react-hot-toast';
+import Profile from "./components/Login/Profile";
 
 function App() {
   const { scrollYProgress } = useScroll();
@@ -17,14 +19,25 @@ function App() {
     restDelta: 0.001
   });
 
+
   return (
     <>
+    <Toaster/>
     <Navbar />
     <motion.div className="progress-bar" style={{ scaleX }} />
     <div className="w-full overflow-x-hidden">
       <Routes>
         <Route path="/" element={<Homepage />} />
         <Route path="/login" element={<LoginForm />} />
+        <Route path="/register" element={<LoginForm />} />
+        <Route
+          path="/profile"
+          element={
+            <PrivateRoute>
+              <Profile />
+            </PrivateRoute>
+          }
+        />
         <Route
           path="/services"
           element={

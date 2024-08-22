@@ -1,5 +1,6 @@
 import { registerUserMethod, userLoginMethod, userLogoutMethod } from "../Api/Api";
 import { LoginActionTypes } from "./action-types";
+import { toast } from "react-hot-toast";
 
 // User register methods 
 const userRegisterLoading = () => ({
@@ -16,15 +17,18 @@ const userRegisterLoading = () => ({
     payload: { error },
   });
   
-  const registerUser = (userData) => {
+  const registerUser = (userData, navigate) => {
     return (dispatch) => {
       dispatch(userRegisterLoading());
   
       registerUserMethod(userData)
         .then((response) => {
           dispatch(userRegisterSuccess(response));
+          toast.success(response.message || "User registered Successfully!");
+          navigate("/login");
         })
         .catch((error) => {
+          toast.error("User registration failed!");
           dispatch(userRegisterError(error.message || "Registration failed"));
         });
     };
@@ -45,15 +49,18 @@ const userLoginError = (error) => ({
   payload: { error },
 });
 
-const userLogin = (userData) => {
+const userLogin = (userData, navigate) => {
   return (dispatch) => {
     dispatch(userLoginLoading());
 
     userLoginMethod(userData)
       .then((response) => {
-        dispatch(userLoginSuccess(response));
+        localStorage.setItem('user', JSON.stringify(response));        dispatch(userLoginSuccess(response));
+        toast.success("User loged in sucessfully!");
+        navigate("/");
       })
       .catch((error) => {
+        toast.error("User login failed!")
         dispatch(userLoginError(error.message || "Login failed!"));
       });
   };
@@ -81,8 +88,10 @@ const userLogin = (userData) => {
       userLogoutMethod(userData)
         .then((response) => {
           dispatch(userLogoutSuccess(response));
+          toast.success("User logged out successfully!")
         })
         .catch((error) => {
+          toast.error("User logout failed!");
           dispatch(userLogoutError(error.message || "Logout failed!"));
         });
     };
