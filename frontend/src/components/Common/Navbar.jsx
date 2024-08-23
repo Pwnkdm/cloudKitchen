@@ -17,6 +17,7 @@ const Navbar = () => {
   return (
     <nav className="bg-white border-gray-200 dark:bg-gray-900 fixed w-full z-50">
       <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
+        <div>
         <Link
           to="/"
           className="flex items-center space-x-3 rtl:space-x-reverse"
@@ -39,10 +40,13 @@ const Navbar = () => {
             Cloud Kitchen
           </motion.span>
         </Link>
+        </div>
+
+        <div className='flex md:hidden'>
         <motion.button
           data-collapse-toggle="navbar-default"
           type="button"
-          className="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
+          className="inline-flex items-center p-2 w-10 h-10 mr-5 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
           aria-controls="navbar-default"
           aria-expanded={isMenuOpen}
           onClick={() => setIsMenuOpen(!isMenuOpen)}
@@ -66,6 +70,9 @@ const Navbar = () => {
             />
           </svg>
         </motion.button>
+        <UserAvtar />
+        </div>
+
         <AnimatePresence>
           {(isMenuOpen || !isMenuOpen) && (
             <motion.div
@@ -113,9 +120,9 @@ const Navbar = () => {
                     </motion.span>
                   </Link>
                 </li>
-                <li>
-                  <UserAvtar />
-                </li>
+                <div className='hidden sm:block'>
+                    <UserAvtar />
+                </div>
               </ul>
             </motion.div>
           )}

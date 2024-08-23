@@ -1,6 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import profilePlaceHolder from "../images/confused.gif"
+import { FaUser, FaEnvelope, FaPhone } from 'react-icons/fa'; // Import icons
+import profilePlaceHolder from "../images/confused.gif";
 
 const Profile = () => {
   const userData = JSON.parse(localStorage.getItem('user')) || {};
@@ -26,20 +27,23 @@ const Profile = () => {
           />
         </motion.div>
         <motion.div
-          className="text-white text-center md:text-left"
+          className="text-white text-center md:text-left space-y-4"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.3, duration: 0.5 }}
         >
-          <p className="text-lg mb-2">
-            <span className="font-semibold">Name:</span> <span className="capitalize">{userData.userName}</span>
-          </p>
-          <p className="text-lg mb-2">
-            <span className="font-semibold">Email:</span> <span>{userData.email}</span>
-          </p>
-          <p className="text-lg mb-2">
-            <span className="font-semibold">Phone:</span> <span>{userData.phoneNumber}</span>
-          </p>
+          <div className="flex items-center space-x-2">
+            <FaUser className="text-lg" /> {/* User Icon */}
+            <span className="capitalize">{userData.userName}</span>
+          </div>
+          <div className="flex items-center space-x-2">
+            <FaEnvelope className="text-lg" /> {/* Email Icon */}
+            <span>{userData.email}</span>
+          </div>
+          <div className="flex items-center space-x-2">
+            <FaPhone className="text-lg" /> {/* Phone Icon */}
+            <span>{userData.phoneNumber}</span>
+          </div>
         </motion.div>
       </motion.div>
     </div>

@@ -39,7 +39,7 @@ const UserAvtar = () => {
   return (
     <div className="relative">
       <motion.div
-        className="w-9 h-9 rounded-full overflow-hidden cursor-pointer"
+        className="w-9 h-9 rounded-full overflow-hidden cursor-pointer border-2 border-white"
         whileHover={{ scale: 1.1, rotate: 5 }}
         whileTap={{ scale: 0.95 }}
         initial={{ scale: 0 }}

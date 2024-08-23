@@ -51,7 +51,20 @@ const Testimonials = () => {
       image:
         "https://res.cloudinary.com/drfbvnwqd/image/upload/v1724341256/ga4mi5rjoyiqsr67bpsk.jpg",
     },
+    {
+      name: "Rahul Raut",
+      review:
+        "The presentation was top-notch, and the taste exceeded all expectations...",
+      location: "Deccan, Pune",
+      image:
+        "http://res.cloudinary.com/drfbvnwqd/image/upload/v1724415001/lrrogocw9sprhimkvnp9.jpg",
+    },
   ];
+
+  // Every dish was a burst of flavor; truly a delightful culinary experience.
+  // Fresh ingredients and expertly prepared meals, absolutely satisfying!
+  // From appetizers to dessert, everything was crafted to perfection.
+  // Innovative dishes with a perfect balance of taste and texture—simply amazing!
 
   const settings = {
     dots: true,
@@ -93,7 +106,7 @@ const Testimonials = () => {
               <img
                 src={testimonial.image}
                 alt={testimonial.name}
-                className="w-20 h-20 rounded-full object-cover mb-4"
+                className="w-20 h-20 rounded-full object-cover mb-4 border-4 border-white"
               />
               <h2 className="text-xl font-bold mb-2">{testimonial.name}</h2>
               <p className="text-sm text-gray-800 text-center mb-2">
