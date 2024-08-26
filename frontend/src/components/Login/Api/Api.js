@@ -39,47 +39,73 @@ export const registerUserMethod = (userData) => {
   });
 };
 
+// export const userLoginMethod = (payload) => {
+//   // Destructure the payload and omiting unwanted properties
+//   const { avtar, userName, phoneNumber, ...loginPayload } = payload;
+
+//   return axios.post(`${BASE_URL}/users/login`, loginPayload)
+//     .then(response => {
+//       // Extract tokens and other relevant data
+//       const { accessToken, refreshToken, user } = response.data.data;
+
+//       // Store tokens securely
+//       localStorage.setItem('accessToken', accessToken);
+//       localStorage.setItem('refreshToken', refreshToken);
+
+//       // Return the user data or relevant response data
+//       return user;
+//     })
+//     .catch(error => {
+//       if (error.response) {
+//         // Server responded with a status other than 2xx
+//         const message = error.response.data?.message || 'Something went wrong while logging in!';
+//         console.error('Error:', message);
+//       } else if (error.request) {
+//         // Request was made but no response was received
+//         console.error('No response received:', error.request);
+//       } else {
+//         // Something else happened while setting up the request
+//         console.error('Error:', error.message);
+//       }
+//       // Re-throw the error so that it can be handled by the caller if needed
+//       return Promise.reject(error);
+//     });
+// };
+
 export const userLoginMethod = (payload) => {
-  // Destructure the payload and omiting unwanted properties
   const { avtar, userName, phoneNumber, ...loginPayload } = payload;
-
-  return axios.post(`${BASE_URL}/users/login`, loginPayload)
+  return axios.post(`${BASE_URL}/users/login`, loginPayload, { withCredentials: true })
     .then(response => {
-      // Extract tokens and other relevant data
-      const { accessToken, refreshToken, user } = response.data.data;
-
-      // Store tokens securely
-      localStorage.setItem('accessToken', accessToken);
-      localStorage.setItem('refreshToken', refreshToken);
-
-      // Return the user data or relevant response data
-      return user;
+      const { user, accessToken } = response.data.data;
+      return {user, accessToken};
     })
     .catch(error => {
       if (error.response) {
-        // Server responded with a status other than 2xx
         const message = error.response.data?.message || 'Something went wrong while logging in!';
         console.error('Error:', message);
       } else if (error.request) {
-        // Request was made but no response was received
         console.error('No response received:', error.request);
       } else {
-        // Something else happened while setting up the request
         console.error('Error:', error.message);
       }
-      // Re-throw the error so that it can be handled by the caller if needed
       return Promise.reject(error);
     });
 };
 
-export const userLogoutMethod = (userData) => {
-  return axios.post(`${BASE_URL}/users/logout`,userData)
+
+export const userLogoutMethod = () => {
+  // Get the access token from localStorage
+  const accessToken = localStorage.getItem('accessToken');
+
+  return axios.post(`${BASE_URL}/users/logout`, {}, {
+    withCredentials: true,
+  })
     .then(response => {
       // Clear tokens from localStorage
       localStorage.removeItem('accessToken');
       localStorage.removeItem('refreshToken');
 
-      // Return the response data if needed
+      // Optionally return the response data
       return response.data;
     })
     .catch(error => {
@@ -94,7 +120,33 @@ export const userLogoutMethod = (userData) => {
         // Something else happened while setting up the request
         console.error('Error:', error.message);
       }
-      // Re-throw the error so that it can be handled by the caller if needed
+
+      // Re-throw the error or return a default error object
+      return Promise.reject(error);
+    });
+};
+
+export const getRefreshTokenMethod = () => {
+  return axios.post(`${BASE_URL}/users/refreshToken`, {}, {
+    withCredentials: true,
+  })
+    .then(response => {
+      return response.data;
+    })
+    .catch(error => {
+      if (error.response) {
+        // Server responded with a status other than 2xx
+        const message = error.response.data?.message || 'Something went wrong while getting token!';
+        console.error('Error:', message);
+      } else if (error.request) {
+        // Request was made but no response was received
+        console.error('No response received:', error.request);
+      } else {
+        // Something else happened while setting up the request
+        console.error('Error:', error.message);
+      }
+
+      // Re-throw the error or return a default error object
       return Promise.reject(error);
     });
 };

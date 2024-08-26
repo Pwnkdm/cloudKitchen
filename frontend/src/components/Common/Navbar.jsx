@@ -3,11 +3,14 @@ import { Link, useLocation } from 'react-router-dom';
 import { FaShoppingCart } from 'react-icons/fa';
 import UserAvtar from './UserAvtar';
 import { motion, AnimatePresence } from 'framer-motion';
+import { useSelector } from 'react-redux';
 
 const Navbar = () => {
   const location = useLocation();
   const [activeSection, setActiveSection] = useState(location.pathname);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  const { accessToken } = useSelector(state=>state.login);
 
   const handleClick = (path) => {
     setActiveSection(path);
@@ -121,7 +124,7 @@ const Navbar = () => {
                   </Link>
                 </li>
                 <div className='hidden sm:block'>
-                    <UserAvtar />
+                   {accessToken &&  <UserAvtar />}
                 </div>
               </ul>
             </motion.div>

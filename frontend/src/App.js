@@ -10,6 +10,9 @@ import Orders from "./components/Cart/Orders";
 import PrivateRoute from "./components/Common/PrivateRoute";
 import { Toaster } from 'react-hot-toast';
 import Profile from "./components/Login/Profile";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
+import { loginHandlers } from "./components/Login/State/action";
 
 function App() {
   const { scrollYProgress } = useScroll();
@@ -18,6 +21,16 @@ function App() {
     damping: 30,
     restDelta: 0.001
   });
+
+  // const { accessToken } = useSelector(state=>state.login);
+  // const dispatch = useDispatch();
+  
+
+  // useEffect(() => {
+  //   if(accessToken==="") {
+  //     dispatch(loginHandlers.getRefreshToken());
+  //   }
+  // }, [dispatch,accessToken])
 
 
   return (

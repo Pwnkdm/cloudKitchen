@@ -1,4 +1,4 @@
-import { registerUserMethod, userLoginMethod, userLogoutMethod } from "../Api/Api";
+import { getRefreshTokenMethod, registerUserMethod, userLoginMethod, userLogoutMethod } from "../Api/Api";
 import { LoginActionTypes } from "./action-types";
 import { toast } from "react-hot-toast";
 
@@ -55,7 +55,7 @@ const userLogin = (userData, navigate) => {
 
     userLoginMethod(userData)
       .then((response) => {
-        localStorage.setItem('user', JSON.stringify(response));        dispatch(userLoginSuccess(response));
+        dispatch(userLoginSuccess(response));
         toast.success("User loged in sucessfully!");
         navigate("/");
       })
@@ -97,8 +97,41 @@ const userLogin = (userData, navigate) => {
     };
   }; 
   
+  // User logout methods 
+  const getRefreshTokenLoading = () => ({
+    type: LoginActionTypes.USER_REFRESHTOKEN_LOADING,
+  });
+  
+  const getRefreshTokenSuccess = (payload) => ({
+    type: LoginActionTypes.USER_REFRESHTOKEN_SUCCESS,
+    payload
+  });
+  
+  const getRefreshTokenError = (error) => ({
+    type: LoginActionTypes.USER_REFRESHTOKEN_ERROR,
+    payload: { error },
+  });
+  
+  const getRefreshToken = () => {
+    return (dispatch) => {
+      dispatch(getRefreshTokenLoading());
+  console.log("Hello!");
+  
+      getRefreshTokenMethod()
+        .then((response) => {
+          dispatch(getRefreshTokenSuccess(response));
+          // toast.success("User logged out successfully!")
+        })
+        .catch((error) => {
+          toast.error("User logout failed!");
+          dispatch(getRefreshTokenError(error.message || "Logout failed!"));
+        });
+    };
+  }; 
+
   export const loginHandlers = {
     registerUser,
     userLogin,
     userLogout,
+    getRefreshToken
   }

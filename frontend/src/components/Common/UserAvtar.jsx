@@ -7,7 +7,8 @@ import { useNavigate } from 'react-router-dom';
 import { FaUser, FaSignOutAlt } from "react-icons/fa";
 
 const UserAvtar = () => {
-  const user = JSON.parse(localStorage.getItem('user')) || {};
+  // const user = JSON.parse(localStorage.getItem('user')) || {};
+  const { user } = useSelector(state=>state.login) || {};
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);

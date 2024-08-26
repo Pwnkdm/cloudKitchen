@@ -3,6 +3,7 @@ import { LoginActionTypes } from "./action-types";
 
 const initialState = {
   user: {},
+  accessToken:"",
 
   userLoading: false,
   userError: false,
@@ -43,7 +44,8 @@ const loginReducer = (state = initialState, action) => {
     case LoginActionTypes.USER_LOGIN_SUCCESS:
       return {
         ...state,
-        user: action.payload,
+        user: action?.payload?.user,
+        accessToken: action?.payload?.accessToken,
         userLoading: false,
         userError: false,
       };
@@ -53,6 +55,16 @@ const loginReducer = (state = initialState, action) => {
         ...state,
         userLoading: false,
         userError: true,
+      };
+    
+    case LoginActionTypes.USER_LOGOUT_SUCCESS:
+      localStorage.removeItem("logedIn");
+      return {
+        ...state,
+          user:{},
+          accessToken:"",
+          userLoading: false,
+          userError: false,
       };
 
     default:
