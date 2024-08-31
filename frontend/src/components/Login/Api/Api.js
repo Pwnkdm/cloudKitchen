@@ -93,12 +93,13 @@ export const userLoginMethod = (payload) => {
 };
 
 
-export const userLogoutMethod = () => {
-  // Get the access token from localStorage
-  const accessToken = localStorage.getItem('accessToken');
+export const userLogoutMethod = (accessToken) => {
 
   return axios.post(`${BASE_URL}/users/logout`, {}, {
     withCredentials: true,
+    headers: {
+      Authorization: `Bearer ${accessToken}`, // Add accessToken to the Authorization header if needed
+    }
   })
     .then(response => {
       // Clear tokens from localStorage
@@ -127,8 +128,13 @@ export const userLogoutMethod = () => {
 };
 
 export const getRefreshTokenMethod = () => {
+  const accessToken = localStorage.getItem('accessToken');
+
   return axios.post(`${BASE_URL}/users/refreshToken`, {}, {
     withCredentials: true,
+    headers: {
+      Authorization: `Bearer ${accessToken}`,
+    }
   })
     .then(response => {
       return response.data;
@@ -150,4 +156,5 @@ export const getRefreshTokenMethod = () => {
       return Promise.reject(error);
     });
 };
+
 

@@ -10,7 +10,7 @@ const Navbar = () => {
   const [activeSection, setActiveSection] = useState(location.pathname);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-  const { accessToken } = useSelector(state=>state.login);
+  const accessToken = localStorage.getItem("accessToken");
 
   const handleClick = (path) => {
     setActiveSection(path);

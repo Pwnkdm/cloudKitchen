@@ -22,16 +22,6 @@ function App() {
     restDelta: 0.001
   });
 
-  // const { accessToken } = useSelector(state=>state.login);
-  // const dispatch = useDispatch();
-  
-
-  // useEffect(() => {
-  //   if(accessToken==="") {
-  //     dispatch(loginHandlers.getRefreshToken());
-  //   }
-  // }, [dispatch,accessToken])
-
 
   return (
     <>

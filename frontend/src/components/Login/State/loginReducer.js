@@ -42,10 +42,14 @@ const loginReducer = (state = initialState, action) => {
       };
 
     case LoginActionTypes.USER_LOGIN_SUCCESS:
+      // Store accessToken directly
+      localStorage.setItem('accessToken', action?.payload?.accessToken);
+      // Store user object as JSON string
+      localStorage.setItem('user', JSON.stringify(action?.payload?.user));
       return {
         ...state,
-        user: action?.payload?.user,
-        accessToken: action?.payload?.accessToken,
+        // user: action?.payload?.user,
+        // accessToken: action?.payload?.accessToken,
         userLoading: false,
         userError: false,
       };
@@ -58,13 +62,40 @@ const loginReducer = (state = initialState, action) => {
       };
     
     case LoginActionTypes.USER_LOGOUT_SUCCESS:
-      localStorage.removeItem("logedIn");
+      console.log("hello!")
+      localStorage.removeItem("accessToken");
+      localStorage.removeItem("user");
       return {
         ...state,
           user:{},
           accessToken:"",
           userLoading: false,
           userError: false,
+      };
+
+
+    //user resfresh token methods
+    case LoginActionTypes.USER_REFRESHTOKEN_LOADING:
+      return {
+        ...state,
+        userLoading: true,
+        userError: false,
+      };
+
+    case LoginActionTypes.USER_REFRESHTOKEN_SUCCESS:
+      // localStorage.setItem('accessToken', action?.payload?.accessToken);
+      // localStorage.setItem('user', JSON.stringify(action?.payload?.user));
+      return {
+        ...state,
+        userLoading: false,
+        userError: false,
+      };
+
+    case LoginActionTypes.USER_REFRESHTOKEN_ERROR:
+      return {
+        ...state,
+        userLoading: false,
+        userError: true,
       };
 
     default:

@@ -81,14 +81,15 @@ const userLogin = (userData, navigate) => {
     payload: { error },
   });
   
-  const userLogout = (userData) => {
+  const userLogout = ({userData, navigate, accessToken}) => {
     return (dispatch) => {
       dispatch(userLogoutLoading());
   
-      userLogoutMethod(userData)
+      userLogoutMethod(accessToken)
         .then((response) => {
           dispatch(userLogoutSuccess(response));
-          toast.success("User logged out successfully!")
+          toast.success("User logged out successfully!");
+          navigate("/");
         })
         .catch((error) => {
           toast.error("User logout failed!");
@@ -123,8 +124,8 @@ const userLogin = (userData, navigate) => {
           // toast.success("User logged out successfully!")
         })
         .catch((error) => {
-          toast.error("User logout failed!");
-          dispatch(getRefreshTokenError(error.message || "Logout failed!"));
+          toast.error("Getting refresh token failed!");
+          dispatch(getRefreshTokenError(error.message || "refresh token failed!"));
         });
     };
   }; 
