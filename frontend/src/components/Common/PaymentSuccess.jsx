@@ -100,7 +100,7 @@ const PaymentSuccess = () => {
       </motion.div>
 
       <motion.div
-        className="mt-8 text-lg text-white"
+        className="mt-8 text-lg text-white text-center"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 2 }}

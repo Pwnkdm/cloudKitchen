@@ -4,10 +4,13 @@ import { foodData } from "../Data/FoodData";
 import { motion } from "framer-motion";
 import { cartActions } from "./state/actions";
 import emptyBox from "../images/lunch-box.gif";
+import { IoMdArrowRoundBack } from "react-icons/io";
+import { useNavigate } from "react-router-dom";
 
 const Orders = () => {
   const cartItems = useSelector((state) => state?.cart?.items || []);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const buttonVariants = {
     hover: { scale: 1.1 },
@@ -32,6 +35,10 @@ const Orders = () => {
     dispatch(cartActions.createOrder(amount));
   };
 
+  const backtoServices = () => {
+    navigate("/services");
+  };
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-800 via-gray-900 to-black pt-[64px] flex flex-col items-center justify-center">
       {cartItems.length === 0 ? (
@@ -41,6 +48,13 @@ const Orders = () => {
         </div>
       ) : (
         <div className="border border-gray-300 p-6 rounded-lg w-full max-w-4xl mt-2 md:mt-4 lg:mt-6 lg:p-8 bg-gray-800">
+          <div
+            onClick={backtoServices}
+            className="text-white flex top-0 -mt-6 mb-5 cursor-pointer "
+          >
+            <IoMdArrowRoundBack size={22} color="#f0f0f0" />
+            <p>Back</p>
+          </div>
           <h2 className="text-xl md:text-2xl lg:text-3xl font-bold mb-4 text-white">
             Cart Summary
           </h2>

@@ -1,8 +1,9 @@
-import React from 'react';
-import { motion } from 'framer-motion';
-import { useDispatch, useSelector } from 'react-redux';
+import React from "react";
+import { motion } from "framer-motion";
+import { useDispatch, useSelector } from "react-redux";
 import { foodData } from "../Data/FoodData";
-import { cartActions } from './state/actions';
+import { cartActions } from "./state/actions";
+import CartPopupBar from "./CartPopupBar";
 
 const variants = {
   hidden: { opacity: 0, scale: 0.8 },
@@ -11,7 +12,7 @@ const variants = {
 
 const buttonVariants = {
   hover: { scale: 1.1 },
-  tap: { scale: 0.9 }
+  tap: { scale: 0.9 },
 };
 
 const FoodItems = () => {
@@ -20,7 +21,7 @@ const FoodItems = () => {
 
   // Function to get quantity of an item in the cart
   const getItemQuantity = (id) => {
-    const item = cartItems.find(item => item.id === id);
+    const item = cartItems.find((item) => item.id === id);
     return item ? item.quantity : 0;
   };
 
@@ -37,9 +38,12 @@ const FoodItems = () => {
   };
 
   return (
-    <div className='bg-gradient-to-br from-gray-800 via-gray-900 to-black'>
+    <div className="bg-gradient-to-br from-gray-800 via-gray-900 to-black">
       <div className="p-6 max-w-4xl mx-auto mt-[50px]">
-        <h1 className="text-3xl font-bold mb-6 text-white">Order Your Favorite Food</h1>
+        <CartPopupBar cartItems={cartItems} />
+        <h1 className="text-3xl font-bold mb-6 text-white">
+          Order Your Favorite Food
+        </h1>
         <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3 mb-8">
           {foodData?.map((item) => (
             <motion.div
@@ -50,11 +54,15 @@ const FoodItems = () => {
               transition={{ duration: 0.5 }}
               className="bg-white shadow-lg rounded-lg overflow-hidden transform transition-transform hover:scale-105"
             >
-              <img src={item.image} alt={item.name} className="w-full h-48 object-cover" />
+              <img
+                src={item.image}
+                alt={item.name}
+                className="w-full h-48 object-cover"
+              />
               <div className="p-4">
                 <h2 className="text-xl font-semibold mb-2">{item.name}</h2>
                 <p className="text-gray-700 mb-4">{item.description}</p>
-                <div className='flex justify-between'>
+                <div className="flex justify-between">
                   <p className="text-lg font-bold">{item.price}</p>
                   {getItemQuantity(item.id) > 0 ? (
                     <div className="flex items-center mt-2">
