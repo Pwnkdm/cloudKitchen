@@ -13,6 +13,7 @@ import Profile from "./components/Login/Profile";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { loginHandlers } from "./components/Login/State/action";
+import PaymentSuccess from "./components/Common/PaymentSuccess";
 
 function App() {
   const { scrollYProgress } = useScroll();
@@ -58,6 +59,7 @@ function App() {
           }
         />
         <Route path="/about" element={<CommingSoon />} />
+        <Route path="/paymentsucess" element={<PaymentSuccess />} />
         <Route path="/pricing" element={<CommingSoon />} />
         <Route path="/contact" element={<CommingSoon />} />
         {/* Add more routes here */}

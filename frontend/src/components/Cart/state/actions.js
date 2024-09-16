@@ -1,4 +1,7 @@
+import { createOrderMethod } from "../../apis/api";
 import { cartTypes } from "./action-types";
+import { toast } from "react-hot-toast";
+
 
 // Add to Cart Actions
 const addToCartLoading = () => ({
@@ -108,9 +111,40 @@ const decreaseQuantity = (id) => {
   };
 };
 
+// Create Order Actions
+const createOrderLoading = () => ({
+  type: cartTypes.CREATE_ORDER_LOADING,
+});
+
+const createOrderError = (error) => ({
+  type: cartTypes.CREATE_ORDER_ERROR,
+  payload: { error },
+});
+
+const createOrderSuccess = () => ({
+  type: cartTypes.CREATE_ORDER_SUCCESS,
+});
+
+const createOrder = (amount) => {
+  return (dispatch) => {
+    dispatch(createOrderLoading());
+    // Assuming createOrderMethod returns a Promise
+    createOrderMethod(amount)
+      .then(() => {
+        toast.success("Order created successfully!")
+        dispatch(createOrderSuccess());
+      })
+      .catch((error) => {
+        dispatch(createOrderError(error.message || error)); // Handle error
+      });
+  };
+};
+
+
 export const cartActions = {
   addToCart,
   removeFromCart,
   increaseQuantity,
   decreaseQuantity,
+  createOrder,
 }

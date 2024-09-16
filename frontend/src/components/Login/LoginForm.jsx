@@ -49,6 +49,8 @@ const LoginForm = () => {
       dispatch(loginHandlers.registerUser(formData, navigate));
     } else {
       dispatch(loginHandlers.userLogin(formData, navigate));
+      console.log("hello world !");
+      
     }
   };
 
