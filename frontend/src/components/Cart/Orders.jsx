@@ -40,14 +40,14 @@ const Orders = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-800 via-gray-900 to-black pt-[64px] flex flex-col items-center justify-center">
+    <div className="h-screen bg-gradient-to-br pt-[64px] overflow-auto from-gray-800 via-gray-900 to-black flex flex-col ">
       {cartItems.length === 0 ? (
-        <div className="flex flex-col items-center">
+        <div className="flex flex-col items-center justify-center m-auto">
           <img src={emptyBox} alt="Empty Cart" className="w-48 h-auto" />
           <p className="text-white text-lg mt-4">Your cart is empty!</p>
         </div>
       ) : (
-        <div className="border border-gray-300 p-6 rounded-lg w-full max-w-4xl mt-2 md:mt-4 lg:mt-6 lg:p-8 bg-gray-800">
+        <div className="border border-gray-300 rounded-lg w-full  mt-2 md:mt-4 lg:mt-6 lg:p-8 bg-gray-800">
           <div
             onClick={backtoServices}
             className="text-white flex top-0 -mt-6 mb-5 cursor-pointer "

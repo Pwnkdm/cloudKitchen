@@ -1,16 +1,16 @@
-import React, { useState, useRef, useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { motion } from 'framer-motion';
+import React, { useState, useRef, useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { motion } from "framer-motion";
 import profilePlaceholder from "../images/confused.gif";
-import { loginHandlers } from '../Login/State/action';
-import { useNavigate } from 'react-router-dom';
+import { loginHandlers } from "../Login/State/action";
+import { useNavigate } from "react-router-dom";
 import { FaUser, FaSignOutAlt } from "react-icons/fa";
 
 const UserAvtar = () => {
-  const user = JSON.parse(localStorage.getItem('user')) || {};
+  const user = JSON.parse(localStorage.getItem("user")) || {};
   const accessToken = localStorage.getItem("accessToken");
-  console.log(user,"userDta");
-  
+  console.log(user, "userDta");
+
   // const { user, accessToken } = useSelector(state=>state.login) || {};
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -20,12 +20,12 @@ const UserAvtar = () => {
   const avatarUrl = user?.avtar || profilePlaceholder;
 
   const handleLogout = () => {
-    dispatch(loginHandlers.userLogout({user, navigate, accessToken}));
+    dispatch(loginHandlers.userLogout({ user, navigate, accessToken }));
     setIsDropdownOpen(false);
   };
 
   const toggleDropdown = () => {
-    setIsDropdownOpen(prevState => !prevState);
+    setIsDropdownOpen((prevState) => !prevState);
   };
 
   // Handle clicks outside of the dropdown
@@ -36,8 +36,8 @@ const UserAvtar = () => {
       }
     };
 
-    document.addEventListener('mousedown', handleClickOutside);
-    return () => document.removeEventListener('mousedown', handleClickOutside);
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
   return (

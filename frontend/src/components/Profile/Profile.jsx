@@ -1,10 +1,10 @@
-import React from 'react';
-import { motion } from 'framer-motion';
-import { FaUser, FaEnvelope, FaPhone } from 'react-icons/fa'; // Import icons
+import React from "react";
+import { motion } from "framer-motion";
+import { FaUser, FaEnvelope, FaPhone } from "react-icons/fa"; // Import icons
 import profilePlaceHolder from "../images/confused.gif";
 
 const Profile = () => {
-  const userData = JSON.parse(localStorage.getItem('user')) || {};
+  const userData = JSON.parse(localStorage.getItem("user")) || {};
 
   return (
     <div className="h-screen bg-slate-800 flex items-center justify-center">
