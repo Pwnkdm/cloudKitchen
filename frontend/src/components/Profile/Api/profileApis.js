@@ -23,3 +23,21 @@ export const updateAddressMethod = (payload) => {
       );
     });
 };
+
+export const getOrdersMethod = (userId) => {
+  return axios
+    .get(`${BASE_URL}/orders/getAllOrders`, {
+      params: {
+        userId: userId,
+      },
+    })
+    .then((response) => {
+      return response.data;
+    })
+    .catch((error) => {
+      console.error(
+        "Error fetching orders:",
+        error.response ? error.response.data : error.message
+      );
+    });
+};

@@ -1,17 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import { profileMethods } from "./State/actions";
 import { useDispatch } from "react-redux";
+import { profileMethods } from "./State/actions"; // Adjust the path as necessary
 
-const AddressForm = () => {
-  const [formData, setFormData] = useState({
-    fullName: "",
-    street: "",
-    city: "",
-    state: "",
-    postalCode: "",
-  });
-
+const AddressForm = ({ existingAddress, onAddressUpdate }) => {
+  const [formData, setFormData] = useState(existingAddress);
   const [isFormValid, setIsFormValid] = useState(false);
   const dispatch = useDispatch();
 
@@ -22,6 +15,11 @@ const AddressForm = () => {
     );
     setIsFormValid(allFieldsFilled);
   }, [formData]);
+
+  useEffect(() => {
+    // Set form data if existingAddress changes
+    setFormData(existingAddress);
+  }, [existingAddress]);
 
   const handleInputChange = (e) => {
     const { id, value } = e.target;
@@ -34,8 +32,9 @@ const AddressForm = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (isFormValid) {
-      //   console.log("Form Data Submitted:", formData);
+      // Dispatch action to update address
       dispatch(profileMethods.updateAddress(formData));
+      onAddressUpdate(formData);
     }
   };
 

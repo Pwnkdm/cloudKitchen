@@ -38,7 +38,7 @@ const FoodItems = () => {
   };
 
   return (
-    <div className="bg-gradient-to-br from-gray-800 via-gray-900 to-black">
+    <div className="bg-gradient-to-br from-gray-800 via-gray-900 to-black mb-20">
       <div className="p-6 max-w-4xl mx-auto mt-[50px]">
         <CartPopupBar cartItems={cartItems} />
         <h1 className="text-3xl font-bold mb-6 text-white">

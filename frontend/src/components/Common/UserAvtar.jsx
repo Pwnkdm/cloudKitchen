@@ -9,7 +9,6 @@ import { FaUser, FaSignOutAlt } from "react-icons/fa";
 const UserAvtar = () => {
   const user = JSON.parse(localStorage.getItem("user")) || {};
   const accessToken = localStorage.getItem("accessToken");
-  console.log(user, "userDta");
 
   // const { user, accessToken } = useSelector(state=>state.login) || {};
   const dispatch = useDispatch();

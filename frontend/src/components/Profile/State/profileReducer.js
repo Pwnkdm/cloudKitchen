@@ -1,9 +1,12 @@
-// reducers/cartReducer.js
 import { profileConstants } from "./action-types";
 
 const initialState = {
-  userLoading: false,
-  userError: false,
+  addressLoading: false,
+  addressError: false,
+
+  ordersLoading: false,
+  ordersError: false,
+  Orders: [],
 };
 
 const profileReducer = (state = initialState, action) => {
@@ -12,26 +15,46 @@ const profileReducer = (state = initialState, action) => {
     case profileConstants.UPDATE_ADDRESS_LOADING:
       return {
         ...state,
-        userLoading: true,
-        userError: false,
+        addressLoading: true,
+        addressError: false,
       };
 
     case profileConstants.UPDATE_ADDRESS_ERROR:
       return {
         ...state,
-        userLoading: false,
-        userError: true,
+        addressLoading: false,
+        addressError: true,
       };
 
     case profileConstants.UPDATE_ADDRESS_SUCCESS:
-      console.log(action, "action");
-
       // Store user object as JSON string
       localStorage.setItem("user", JSON.stringify(action?.payload));
       return {
         ...state,
-        userLoading: false,
-        userError: false,
+        addressLoading: false,
+        addressError: false,
+      };
+
+    case profileConstants.GET_ORDERS_LOADING:
+      return {
+        ...state,
+        ordersLoading: true,
+        ordersError: false,
+      };
+
+    case profileConstants.GET_ORDERS_ERROR:
+      return {
+        ...state,
+        ordersLoading: false,
+        ordersError: true,
+      };
+
+    case profileConstants.GET_ORDERS_SUCCESS:
+      return {
+        ...state,
+        ordersLoading: false,
+        ordersError: false,
+        Orders: action.payload || [],
       };
 
     default:

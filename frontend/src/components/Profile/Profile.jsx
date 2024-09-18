@@ -1,12 +1,24 @@
-import React from "react";
+import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { FaUser, FaEnvelope, FaPhone } from "react-icons/fa"; // Import icons
 import profilePlaceHolder from "../images/confused.gif";
 import AddressForm from "./AddressForm";
 import AddressCard from "./AddressCard";
+import Loader from "../Loader/Counter";
+import { useSelector } from "react-redux";
 
 const Profile = () => {
   const userData = JSON.parse(localStorage.getItem("user")) || {};
+  const { addressLoading } = useSelector((state) => state.profile);
+  const [isEditing, setIsEditing] = useState(false);
+
+  const handleEdit = () => {
+    setIsEditing(true);
+  };
+
+  const handleAddressUpdate = (updatedAddress) => {
+    setIsEditing(false);
+  };
 
   return (
     <div className="h-screen overflow-auto bg-slate-800 p-6 flex flex-col space-y-6">
@@ -25,7 +37,7 @@ const Profile = () => {
         >
           <img
             className="object-cover w-full h-full"
-            src={userData.avtar || profilePlaceHolder}
+            src={userData?.avtar || profilePlaceHolder}
             alt="profile"
           />
         </motion.div>
@@ -40,25 +52,37 @@ const Profile = () => {
           <div className="flex items-center justify-center sm:justify-start space-x-4">
             <FaUser className="text-xl" />
             <span className="capitalize">
-              {userData.userName || "Username"}
+              {userData?.userName || "Username"}
             </span>
           </div>
           <div className="flex items-center justify-center sm:justify-start space-x-4">
             <FaEnvelope className="text-xl" />
-            <span>{userData.email || "user@example.com"}</span>
+            <span>{userData?.email || "user@example.com"}</span>
           </div>
           <div className="flex items-center justify-center sm:justify-start space-x-4">
             <FaPhone className="text-xl" />
-            <span>{userData.phoneNumber || "000-000-0000"}</span>
+            <span>{userData?.phoneNumber || "000-000-0000"}</span>
           </div>
         </motion.div>
       </motion.div>
 
       <div className="flex-1 bg-gray-900 p-4 text-white rounded-lg shadow-lg">
-        {userData?.address ? (
-          <AddressCard address={userData?.address} />
+        {addressLoading ? (
+          <div className="absolute inset-0 flex items-center justify-center align-middle bg-gray-900 bg-opacity-75">
+            <div className="text-white ">
+              <Loader />
+            </div>
+          </div>
+        ) : isEditing ? (
+          <AddressForm
+            existingAddress={userData?.address || {}} // Passing empty object if no address
+            onAddressUpdate={handleAddressUpdate}
+          />
         ) : (
-          <AddressForm />
+          <AddressCard
+            address={userData?.address || {}} // Fallback to empty object
+            onEdit={handleEdit}
+          />
         )}
       </div>
     </div>

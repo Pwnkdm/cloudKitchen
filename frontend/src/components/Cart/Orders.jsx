@@ -6,9 +6,12 @@ import { cartActions } from "./state/actions";
 import emptyBox from "../images/lunch-box.gif";
 import { IoMdArrowRoundBack } from "react-icons/io";
 import { useNavigate } from "react-router-dom";
+import toast from "react-hot-toast";
 
 const Orders = () => {
   const cartItems = useSelector((state) => state?.cart?.items || []);
+  const userData = JSON.parse(localStorage.getItem("user")) || {};
+
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -32,7 +35,14 @@ const Orders = () => {
   };
 
   const checkoutHandler = (amount) => {
-    dispatch(cartActions.createOrder(amount));
+    if (userData.address === undefined) {
+      toast.error("Please update address!");
+      navigate("/profile");
+    } else {
+      const userId = userData?._id;
+      const address = userData?.address;
+      dispatch(cartActions.createOrder({ amount, address, userId, cartItems }));
+    }
   };
 
   const backtoServices = () => {
@@ -40,7 +50,7 @@ const Orders = () => {
   };
 
   return (
-    <div className="h-screen bg-gradient-to-br pt-[64px] overflow-auto from-gray-800 via-gray-900 to-black flex flex-col ">
+    <div className="h-screen bg-gradient-to-br pt-[64px] overflow-auto from-gray-800 via-gray-900 to-black flex flex-col">
       {cartItems.length === 0 ? (
         <div className="flex flex-col items-center justify-center m-auto">
           <img src={emptyBox} alt="Empty Cart" className="w-48 h-auto" />

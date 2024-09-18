@@ -2,7 +2,6 @@ import { createOrderMethod } from "../../apis/api";
 import { cartTypes } from "./action-types";
 import { toast } from "react-hot-toast";
 
-
 // Add to Cart Actions
 const addToCartLoading = () => ({
   type: cartTypes.ADD_TO_CART_LOADING,
@@ -125,13 +124,13 @@ const createOrderSuccess = () => ({
   type: cartTypes.CREATE_ORDER_SUCCESS,
 });
 
-const createOrder = (amount) => {
+const createOrder = ({ amount, address, userId, cartItems }) => {
   return (dispatch) => {
     dispatch(createOrderLoading());
     // Assuming createOrderMethod returns a Promise
-    createOrderMethod(amount)
+    createOrderMethod({ amount, address, userId, cartItems })
       .then(() => {
-        toast.success("Order created successfully!")
+        toast.success("Order created successfully!");
         dispatch(createOrderSuccess());
       })
       .catch((error) => {
@@ -140,11 +139,10 @@ const createOrder = (amount) => {
   };
 };
 
-
 export const cartActions = {
   addToCart,
   removeFromCart,
   increaseQuantity,
   decreaseQuantity,
   createOrder,
-}
+};

@@ -1,20 +1,56 @@
 import { instance } from "../index.js";
 import crypto from "crypto";
-import { Payment } from "../models/payment.models.js";
+import { Payment } from "../models/payment.model.js";
+import { Order } from "../models/order.model.js";
 
 export const paymentCheckout = async (req, res) => {
-  const options = {
-    amount: Number(req.body.amount * 100), // amount in the smallest currency unit
-    currency: "INR",
-    receipt: "order_rcptid_11",
-  };
+  try {
+    // Extract data from req.body
+    const { amount, address, userId, cartItems } = req.body;
 
-  const order = await instance.orders.create(options);
+    // Razorpay order options
+    const options = {
+      amount: Number(amount * 100), // amount in the smallest currency unit
+      currency: "INR",
+    };
 
-  res.status(200).json({
-    success: true,
-    order,
-  });
+    // Create order with Razorpay
+    const order = await instance.orders.create(options);
+
+    // Save order in database
+    const newOrder = new Order({
+      amount,
+      userId,
+      address,
+      cartItems, // No extra fields, it's correctly defined in schema
+      amount_due: order.amount_due / 100, // Convert back to regular units
+      amount_paid: order.amount_paid / 100, // Convert back to regular units
+      attempts: order.attempts,
+      created_at: order.created_at,
+      currency: order.currency,
+      entity: order.entity,
+      id: order.id,
+      notes: order.notes,
+      offer_id: order.offer_id,
+      receipt: order.receipt,
+      status: "Delivered", //order.status,
+    });
+
+    // Save the order in MongoDB
+    await newOrder.save();
+
+    // Send response
+    res.status(200).json({
+      success: true,
+      order,
+    });
+  } catch (error) {
+    console.error("Error creating Razorpay order:", error);
+    res.status(500).json({
+      success: false,
+      message: "Order creation failed",
+    });
+  }
 };
 
 export const paymentVerification = async (req, res) => {
@@ -39,7 +75,8 @@ export const paymentVerification = async (req, res) => {
     });
 
     res.redirect(
-      `${process.env.REACT_APP_BASE_URL}/paymentsucess?${razorpay_payment_id}`
+      // `${process.env.REACT_APP_BASE_URL}/paymentsucess?${razorpay_payment_id}`
+      `${process.env.REACT_APP_BASE_URL}/`
     );
   } else {
     res.status(401).json({

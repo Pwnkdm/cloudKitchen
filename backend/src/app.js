@@ -19,10 +19,12 @@ app.use(cookieParser());
 // Routes import
 import userRouter from "./routes/user.routes.js";
 import paymentRouter from "./routes/payment.routes.js";
+import orderRouter from "./routes/order.routes.js";
 
 // routes declaration
 app.use("/api/v1/users", userRouter);
 app.use("/api/v1/payment", paymentRouter);
+app.use("/api/v1/orders", orderRouter);
 app.get("/api/v1/getKey", (req, res) =>
   res.status(200).json({ key: process.env.RAZORPAY_API_KEY })
 );

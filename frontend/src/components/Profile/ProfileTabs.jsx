@@ -1,15 +1,12 @@
 import React, { useState, useEffect } from "react";
 import {
-  FaHome,
   FaClipboardList,
-  FaCreditCard,
   FaUsers,
-  FaFileInvoice,
   FaArrowLeft,
   FaArrowRight,
 } from "react-icons/fa";
 import Profile from "./Profile";
-import CommingSoon from "../Common/CommingSoon.jsx";
+import OrdersHistory from "./OrdersHistory.jsx";
 
 const ProfileTabs = () => {
   const [activeSection, setActiveSection] = useState("Profile");
@@ -53,7 +50,7 @@ const ProfileTabs = () => {
           </div>
         );
       case "orders":
-        return <CommingSoon />;
+        return <OrdersHistory />;
       default:
         return <div>Test Card Details Content</div>;
     }

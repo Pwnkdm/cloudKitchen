@@ -1,7 +1,8 @@
 import toast from "react-hot-toast";
-import { updateAddressMethod } from "../Api/profileApis";
+import { getOrdersMethod, updateAddressMethod } from "../Api/profileApis";
 import { profileConstants } from "./action-types";
 
+// update address method
 const updateAddressLoading = () => ({
   type: profileConstants.UPDATE_ADDRESS_LOADING,
 });
@@ -31,6 +32,36 @@ const updateAddress = (data) => {
   };
 };
 
+// get orders methods
+const getOrdersLoading = () => ({
+  type: profileConstants.GET_ORDERS_LOADING,
+});
+
+const getOrdersError = () => ({
+  type: profileConstants.GET_ORDERS_ERROR,
+});
+
+const getordersSuccess = (payload) => ({
+  type: profileConstants.GET_ORDERS_SUCCESS,
+  payload,
+});
+
+const getOrders = (data) => {
+  return (dispatch) => {
+    dispatch(getOrdersLoading());
+
+    getOrdersMethod(data)
+      .then((response) => {
+        dispatch(getordersSuccess(response?.data));
+      })
+      .catch((error) => {
+        toast.error("Error while getting data!");
+        dispatch(getOrdersError(error));
+      });
+  };
+};
+
 export const profileMethods = {
   updateAddress,
+  getOrders,
 };
