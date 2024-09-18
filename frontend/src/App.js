@@ -41,7 +41,7 @@ function App() {
             }
           />
           <Route
-            path="/services"
+            path="/menu"
             element={
               <PrivateRoute>
                 <Cart />

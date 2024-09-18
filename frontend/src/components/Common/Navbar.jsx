@@ -103,15 +103,15 @@ const Navbar = () => {
                 </li>
                 <li>
                   <Link
-                    to="/services"
+                    to="/menu"
                     className={`block py-2 px-3 rounded md:bg-transparent md:p-0 ${
-                      activeSection === "/services"
+                      activeSection === "/menu"
                         ? "text-blue-700 dark:text-blue-500"
                         : "text-gray-900 dark:text-white"
                     }`}
-                    onClick={() => handleClick("/services")}
+                    onClick={() => handleClick("/menu")}
                   >
-                    Services
+                    Menu
                   </Link>
                 </li>
                 <li>

@@ -36,7 +36,7 @@ const Orders = () => {
   };
 
   const backtoServices = () => {
-    navigate("/services");
+    navigate("/menu");
   };
 
   return (
@@ -47,7 +47,7 @@ const Orders = () => {
           <p className="text-white text-lg mt-4">Your cart is empty!</p>
         </div>
       ) : (
-        <div className="border border-gray-300 rounded-lg w-full  mt-2 md:mt-4 lg:mt-6 lg:p-8 bg-gray-800">
+        <div className="w-[90%] border border-gray-300 rounded-lg m-auto mt-2 md:mt-4 lg:mt-6 lg:p-8 bg-gray-800">
           <div
             onClick={backtoServices}
             className="text-white flex top-0 -mt-6 mb-5 cursor-pointer "

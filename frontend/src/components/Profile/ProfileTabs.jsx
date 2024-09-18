@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   FaHome,
   FaClipboardList,
@@ -12,16 +12,33 @@ import Profile from "./Profile";
 import CommingSoon from "../Common/CommingSoon.jsx";
 
 const ProfileTabs = () => {
-  const [activeSection, setActiveSection] = useState("test-card-details");
+  const [activeSection, setActiveSection] = useState("Profile");
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
+
+  // Check screen size on mount and update sidebar state
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth < 640) {
+        setIsSidebarOpen(false); // Close sidebar on small screens
+      }
+    };
+
+    // Call resize function on component mount
+    handleResize();
+
+    // Add resize event listener
+    window.addEventListener("resize", handleResize);
+
+    // Cleanup the event listener on component unmount
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
 
   // Sidebar items
   const sections = [
     { id: "Profile", label: "Profile", icon: <FaUsers /> },
     { id: "orders", label: "Orders", icon: <FaClipboardList /> },
-    // { id: "dashboard", label: "Dashboard", icon: <FaHome /> },
-    // { id: "payments", label: "Payments", icon: <FaCreditCard /> },
-    // { id: "invoices", label: "Invoices", icon: <FaFileInvoice /> },
   ];
 
   // Section content
@@ -37,10 +54,6 @@ const ProfileTabs = () => {
         );
       case "orders":
         return <CommingSoon />;
-      case "payments":
-        return <div>Payments Content</div>;
-      case "invoices":
-        return <div>Invoices Content</div>;
       default:
         return <div>Test Card Details Content</div>;
     }
